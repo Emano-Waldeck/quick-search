@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <style type="text/css">
+      body {
+        width: 500px;
+        height: 600px;
+        margin: 0;
+        background-color: #303e50;
+        display: flex;
+        flex-direction: column;
+        font-family: "Helvetica Neue",Helvetica,sans-serif;
+        font-size: 13px;
+      }
+      header {
+        height: 50px;
+        background-color: #202a36;
+      }
+      header>span {
+        background-image: url(amazon.png);
+        background-repeat: no-repeat;
+        width: 120px;
+        height: 100%;
+        display: inline-block;
+      }
+      body>div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+      }
+      iframe {
+        border: none;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+      p {
+        background-color: #fcb25f;
+        padding: 20px 10px;
+        border-radius: 2px;
+      }
+      #search {
+        position: relative;
+        display: flex;
+        height: 35px;
+        width: calc(100% - 100px);
+      }
+      #search input[type=search] {
+        height: 100%;
+        border: none;
+        flex: 1;
+        outline: none;
+        text-indent: 6px;
+        border-radius: 2px 0 0 2px;
+      }
+      #search input[type=submit] {
+        width: 50px;
+        box-sizing: border-box;
+        border: none;
+        background-color: #fcb25f;
+        box-sizing: border-box;
+        cursor: pointer;
+        outline: none;
+        border-radius: 0 2px 2px 0;
+      }
+      #search::before {
+        content: ' ';
+        position: absolute;
+        right: 10px;
+        height: 100%;
+        width: 30px;
+        background-image: url('amazon.png');
+        background-position: -72px -233px;
+        pointer-events: none;
+        filter: invert(100%);
+      }
+      #frame {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: none;
+      }
+      body[data-loading=true] #frame {
+        display: flex;
+      }
+      body[data-loading=true] #frame>div {
+        border: 16px solid #fff; /* Light grey */
+        border-top: 16px solid #fcb25f; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+      }
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+      body[data-hide=true] header,
+      body[data-hide=true] div {
+        display: none;
+      }
+      body[data-hide=true] iframe {
+        display: block;
+      }
+    </style>
+    <header>
+      <span></span>
+    </header>
+    <div>
+      <form id="search">
+        <input type="search" placeholder="Search" required>
+        <input type="submit" value="">
+      </form>
+    </div>
+    <div><p>To search faster, select the query in the current page then open the popup</p></div>
+    <div id="frame">
+      <div></div>
+    </div>
+    <iframe sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+    <script src="index.js"></script>
+  </body>
+</html>
